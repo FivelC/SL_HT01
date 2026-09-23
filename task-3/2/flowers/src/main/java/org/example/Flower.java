@@ -1,19 +1,31 @@
 package org.example;
 
-public class Flower {
-    int code;
-    int cost;
-    public void setCost(int c){
-        this.cost = c;
+public abstract class Flower {
+    private final String name;
+    private int cost;
+
+    public Flower(String name, int cost) {
+        this.name = name;
+        setCost(cost);
     }
-    public void setCode(int c){
-        this.code = c;
+
+    public String getName() {
+        return name;
     }
-    public int getCost(){
+
+    public int getCost() {
         return cost;
     }
-    public Flower(int code, int cost){
-        setCode(code);
-        setCost(cost);
+
+    public void setCost(int cost) {
+        if (cost < 0) {
+            throw new IllegalArgumentException("!!сost cannot be negative");
+        }
+        this.cost = cost;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("%s — %d руб.", name, cost);
     }
 }
