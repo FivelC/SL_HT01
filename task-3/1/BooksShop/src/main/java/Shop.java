@@ -1,3 +1,4 @@
+import java.time.LocalDate;
 import java.util.List;
 
 public class Shop {
@@ -37,15 +38,31 @@ public class Shop {
         orderProcessor.changeStatus(order, status);
     }
 
-    public List<Book> getBooks() {
-        return storage.getBooks();
+    public List<Book> getBooks(SortBook status) {
+        return storage.getBooks(status);
     }
 
-    public List<Order> getOrders() {
-        return orderProcessor.getOrders();
+    public List<Order> getOrders(SortOrder status) {
+        return orderProcessor.getOrders(status);
     }
 
+    public List<Order> getCompletedOrders(LocalDate from, LocalDate to, SortOrder sort) {
+        return orderProcessor.getCompletedOrders(from, to, sort);
+    }
+    public float getEarnedAmount(LocalDate start, LocalDate end){
+        float res = 0;
+        List<Order> compl = orderProcessor.getCompletedOrders(start, end, SortOrder.NONE);
+        for(Order ord : compl){
+            res += ord.getCost();
+        }
+        return res;
+    }
+    public int getTotalOrders
     public List<BookRequest> getRequests() {
         return requestProcessor.getRequests();
+    }
+
+    public List<RequestInfo> getRequests(SortRequest sort) {
+        return requestProcessor.getRequests(sort);
     }
 }

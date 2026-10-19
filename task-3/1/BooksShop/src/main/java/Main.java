@@ -1,11 +1,12 @@
+import java.time.LocalDate;
 import java.util.List;
 
 public class Main {
     public static void main(String[] args){
-        Book book1 = new Book("Мастер и Маргарита", "Булгаков", "Роман", 4.8f, 500, false, BookStatus.AVAILABLE);
-        Book book2 = new Book("Война и мир", "Толстой", "Роман", 4.6f, 700, false, BookStatus.NOT_AVAILABLE);
-        Book book3 = new Book("Преступление и наказание", "Достоевский", "Роман", 4.7f, 450, true, BookStatus.AVAILABLE);
-        Book book4 = new Book("Идиот", "Достоевский", "Роман", 1.1f, 400, false, BookStatus.NOT_AVAILABLE);
+        Book book1 = new Book("Мастер и Маргарита", "Булгаков", LocalDate.of(1967, 1, 1), "Роман", 4.8f, 500, false, BookStatus.AVAILABLE);
+        Book book2 = new Book("Война и мир", "Толстой", LocalDate.of(1869, 1, 1), "Роман", 4.6f, 700, false, BookStatus.NOT_AVAILABLE);
+        Book book3 = new Book("Преступление и наказание", "Достоевский", LocalDate.of(1866, 1, 1), "Роман", 4.7f, 450, true, BookStatus.AVAILABLE);
+        Book book4 = new Book("Идиот", "Достоевский", LocalDate.of(1869, 1, 1), "Роман", 1.1f, 400, false, BookStatus.NOT_AVAILABLE);
 
         Shop shop = new Shop(new Storage(List.of(book1, book2, book3, book4)), new OrderProcessor(), new RequestProcessor());
 
@@ -65,8 +66,39 @@ public class Main {
         System.out.println('\n');
 
         System.out.println("--- Итог ---");
-        shop.getBooks().forEach(System.out::println);
-        shop.getOrders().forEach(System.out::println);
+        shop.getBooks(SortBook.NONE).forEach(System.out::println);
+        shop.getOrders(SortOrder.NONE).forEach(System.out::println);
         shop.getRequests().forEach(System.out::println);
+
+        System.out.println("--- Сортировки ---");
+        shop.getBooks(SortBook.ALPHABET).forEach(System.out::println);
+        System.out.println('\n');
+        shop.getBooks(SortBook.DATE).forEach(System.out::println);
+        System.out.println('\n');
+        shop.getBooks(SortBook.COST).forEach(System.out::println);
+        System.out.println('\n');
+        shop.getBooks(SortBook.AVAILABLE).forEach(System.out::println);
+        System.out.println('\n');
+
+        System.out.println("--- Заказы ---");
+        shop.getOrders(SortOrder.DATE).forEach(System.out::println);
+        System.out.println('\n');
+        shop.getOrders(SortOrder.COST).forEach(System.out::println);
+        System.out.println('\n');
+        shop.getOrders(SortOrder.STATUS).forEach(System.out::println);
+        System.out.println('\n');
+
+        System.out.println("--- Запросы ---");
+        shop.getRequests(SortRequest.NUMBER_REQUEST).forEach(System.out::println);
+        System.out.println('\n');
+        shop.getRequests(SortRequest.ALPHABET).forEach(System.out::println);
+        System.out.println('\n');
+
+        System.out.println("--- Выполненные заказы за период ---");
+        LocalDate from = LocalDate.of(2000, 1, 1);
+        LocalDate to = LocalDate.of(2026, 12, 31);
+        shop.getCompletedOrders(from, to, SortOrder.DATE).forEach(System.out::println);
+        System.out.println('\n');
+        shop.getCompletedOrders(from, to, SortOrder.COST).forEach(System.out::println);
     }
 }

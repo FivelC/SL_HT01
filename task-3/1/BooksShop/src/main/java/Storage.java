@@ -1,5 +1,8 @@
+import java.text.Collator;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.Locale;
 
 public class Storage {
     private List<Book> books = new ArrayList<>();
@@ -23,8 +26,20 @@ public class Storage {
         return book.getStatus() == BookStatus.AVAILABLE;
     }
 
-    public List<Book> getBooks() {
-        return List.copyOf(books);
+
+    public List<Book> getBooks(SortBook status) {
+        Collator ru = Collator.getInstance(Locale.forLanguageTag("ru"));
+        Comparator<Book> comparator = switch (status) {
+            case ALPHABET -> Comparator.comparing(Book::getName, ru);
+            case DATE -> Comparator.comparing(Book::getDate);
+            case COST -> Comparator.comparing(Book::getCost);
+            case AVAILABLE -> Comparator.comparing(Book::getStatus).thenComparing(Book::getName, ru);
+            case NONE -> null;
+        };
+
+        List<Book> res = new ArrayList<>(books);
+        if (comparator != null) res.sort(comparator);
+        return res;
     }
 
     private void checkBook(Book book){
