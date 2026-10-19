@@ -1,16 +1,19 @@
 import java.time.LocalDate;
 
 public class Book {
-    private boolean ebook;
-    private String name;
-    private String genre;
-    private String author;
-    private LocalDate date;
+    private final boolean ebook;
+    private final String name;
+    private final String genre;
+    private final String author;
+    private final LocalDate date;
+    private LocalDate arrivalDate;
     private float rating;
     private float cost;
     private BookStatus status = BookStatus.AVAILABLE;
+    private final String description;
 
-    public Book(String name, String author,LocalDate date, String genre, float rating, float cost, boolean ebook, BookStatus status){
+
+    public Book(String name, String author, LocalDate date, String genre, float rating, float cost, boolean ebook, BookStatus status, String description, LocalDate arrivalDate){
         this.name = name;
         this.author = author;
         this.date = date;
@@ -19,6 +22,8 @@ public class Book {
         this.cost = cost;
         this.ebook = ebook;
         this.status = status;
+        this.description = description;
+        this.arrivalDate = arrivalDate;
     }
 
     public String getName() {
@@ -37,8 +42,24 @@ public class Book {
         return date;
     }
 
+    public LocalDate getArrivalDate() {
+        return arrivalDate;
+    }
+
+    public void setArrivalDate(LocalDate arrivalDate) {
+        this.arrivalDate = arrivalDate;
+    }
+
     public float getCost() {
         return cost;
+    }
+
+    public float getRating() {
+        return rating;
+    }
+
+    public String getDescription() {
+        return description;
     }
 
     @Override

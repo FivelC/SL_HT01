@@ -1,30 +1,28 @@
 import java.time.LocalDate;
-import java.time.ZoneId;
-import java.util.concurrent.ThreadLocalRandom;
 
 public class Order {
-    private static final long MIN_DATE = LocalDate.of(2000, 1, 1).toEpochDay();
-    private static final long MAX_DATE = LocalDate.of(2026, 12, 31).toEpochDay();
     private final int number;
     private final Book book;
+    private final User customer;
 
     private final float cost;
     private LocalDate date = null;
     private final BookRequest request;
     private OrderStatus status = OrderStatus.NEW;
 
-    public Order(int number, Book book, BookRequest request){
+    public Order(int number, Book book, User customer, BookRequest request){
         this.number = number;
         this.book = book;
+        this.customer = customer;
         this.request = request;
         this.cost = book.getCost();
     }
 
-    public void completed(){
-        long randomDay = ThreadLocalRandom.current().nextLong(MIN_DATE, MAX_DATE);
+    public void completed(LocalDate comp){
         status = OrderStatus.COMPLETED;
-        date = LocalDate.ofEpochDay(randomDay);
+        date = comp;
     }
+
     public void canceled(){
         status = OrderStatus.CANCELED;
     }
@@ -51,6 +49,10 @@ public class Order {
 
     public OrderStatus getStatus() {
         return status;
+    }
+
+    public User getCustomer() {
+        return customer;
     }
 
     @Override

@@ -1,4 +1,5 @@
 import java.text.Collator;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -12,8 +13,13 @@ public class Storage {
     }
 
     public void storeBook(Book book){
+        storeBook(book, LocalDate.now());
+    }
+
+    public void storeBook(Book book, LocalDate arrivalDate){
         checkBook(book);
         book.setStatus(BookStatus.AVAILABLE);
+        book.setArrivalDate(arrivalDate);
     }
 
     public void removeBook(Book book){
@@ -26,6 +32,10 @@ public class Storage {
         return book.getStatus() == BookStatus.AVAILABLE;
     }
 
+    public String getDescription(Book book){
+        checkBook(book);
+        return book.getDescription();
+    }
 
     public List<Book> getBooks(SortBook status) {
         Collator ru = Collator.getInstance(Locale.forLanguageTag("ru"));
