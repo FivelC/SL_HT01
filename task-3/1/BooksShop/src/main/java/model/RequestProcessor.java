@@ -1,3 +1,5 @@
+package model;
+
 import java.text.Collator;
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -34,9 +36,9 @@ public class RequestProcessor {
 
         Collator ru = Collator.getInstance(Locale.forLanguageTag("ru"));
         Comparator<RequestInfo> comparator = switch (sort){
-            case NUMBER_REQUEST -> Comparator.comparingLong(RequestInfo::getCount).reversed();
-            case ALPHABET -> Comparator.comparing(info -> info.getBook().getName(), ru);
-            case NONE -> null;
+            case SortRequest.NUMBER_REQUEST -> Comparator.comparingLong(RequestInfo::getCount).reversed();
+            case SortRequest.ALPHABET -> Comparator.comparing(info -> info.getBook().getName(), ru);
+            case SortRequest.NONE -> null;
         };
 
         List<RequestInfo> res = new ArrayList<>();

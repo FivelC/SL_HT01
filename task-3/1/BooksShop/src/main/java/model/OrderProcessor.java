@@ -1,3 +1,5 @@
+package model;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -22,12 +24,12 @@ public class OrderProcessor {
         if (order.getStatus() != OrderStatus.NEW) throw new IllegalStateException(order + ": заказ уже закрыт");
 
         switch (status){
-            case COMPLETED -> {
+            case OrderStatus.COMPLETED -> {
                 if (order.isWaitingForBook()) throw new IllegalStateException(order + ": книга ещё не поступила");
                 order.completed(date);
             }
-            case CANCELED -> order.canceled();
-            case NEW -> {}
+            case OrderStatus.CANCELED -> order.canceled();
+            case OrderStatus.NEW -> {}
         }
     }
 
@@ -48,10 +50,10 @@ public class OrderProcessor {
 
     public List<Order> getOrders(SortOrder status) {
         Comparator<Order> comparator = switch (status){
-            case DATE -> Comparator.comparing(Order::getDate, Comparator.nullsLast(Comparator.naturalOrder()));
-            case COST -> Comparator.comparing(Order::getCost);
-            case STATUS -> Comparator.comparing(Order::getStatus);
-            case NONE -> null;
+            case SortOrder.DATE -> Comparator.comparing(Order::getDate, Comparator.nullsLast(Comparator.naturalOrder()));
+            case SortOrder.COST -> Comparator.comparing(Order::getCost);
+            case SortOrder.STATUS -> Comparator.comparing(Order::getStatus);
+            case SortOrder.NONE -> null;
         };
         List<Order> res = new ArrayList<>(orders);
         if (comparator != null) res.sort(comparator);
@@ -60,9 +62,9 @@ public class OrderProcessor {
 
     public List<Order> getCompletedOrders(LocalDate from, LocalDate to, SortOrder sort) {
         Comparator<Order> comparator = switch (sort){
-            case DATE -> Comparator.comparing(Order::getDate);
-            case COST -> Comparator.comparing(Order::getCost);
-            case STATUS, NONE -> null;
+            case SortOrder.DATE -> Comparator.comparing(Order::getDate);
+            case SortOrder.COST -> Comparator.comparing(Order::getCost);
+            case SortOrder.STATUS, SortOrder.NONE -> null;
         };
         List<Order> res = new ArrayList<>();
         for (Order order : orders){

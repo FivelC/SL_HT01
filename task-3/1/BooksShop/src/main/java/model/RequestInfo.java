@@ -1,3 +1,5 @@
+package model;
+
 public class RequestInfo {
     private final Book book;
     private final long count;

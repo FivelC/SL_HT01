@@ -1,3 +1,5 @@
+package model;
+
 public class BookRequest {
     private final int number;
     private final Book book;

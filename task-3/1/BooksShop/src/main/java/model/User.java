@@ -1,3 +1,5 @@
+package model;
+
 public record User(String firstName, String lastName) {
     @Override
     public String toString() {

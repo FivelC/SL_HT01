@@ -1,3 +1,5 @@
+package model;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -72,8 +74,8 @@ public class Shop {
             if (lastSale == null || lastSale.isBefore(border)) res.add(book);
         }
         Comparator<Book> comparator = switch (sort){
-            case DATE -> Comparator.comparing(Book::getArrivalDate);
-            case COST -> Comparator.comparing(Book::getCost);
+            case SortUnsoldBook.DATE -> Comparator.comparing(Book::getArrivalDate);
+            case SortUnsoldBook.COST -> Comparator.comparing(Book::getCost);
         };
         res.sort(comparator);
         return res;
@@ -96,7 +98,7 @@ public class Shop {
     }
     public int getTotalOrders(LocalDate start, LocalDate end){
         int res = 0;
-        List<Order> compl = orderProcessor.getCompletedOrders(start,end,SortOrder.NONE);
+        List<Order> compl = orderProcessor.getCompletedOrders(start,end, SortOrder.NONE);
         for(Order ord : compl){
             res++;
         }

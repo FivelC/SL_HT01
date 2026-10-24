@@ -1,3 +1,5 @@
+package model;
+
 import java.text.Collator;
 import java.time.LocalDate;
 import java.util.ArrayList;
