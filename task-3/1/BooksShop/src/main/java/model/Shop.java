@@ -89,20 +89,13 @@ public class Shop {
         return orderProcessor.getCompletedOrders(from, to, sort);
     }
     public float getEarnedAmount(LocalDate start, LocalDate end){
-        float res = 0;
         List<Order> compl = orderProcessor.getCompletedOrders(start, end, SortOrder.NONE);
-        for(Order ord : compl){
-            res += ord.getCost();
-        }
+        float res = (float)compl.stream().mapToDouble(Order::getCost).sum();
         return res;
     }
     public int getTotalOrders(LocalDate start, LocalDate end){
-        int res = 0;
         List<Order> compl = orderProcessor.getCompletedOrders(start,end, SortOrder.NONE);
-        for(Order ord : compl){
-            res++;
-        }
-        return res;
+        return compl.size();
     }
 
 
