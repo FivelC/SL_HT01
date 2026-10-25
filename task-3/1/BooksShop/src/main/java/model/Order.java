@@ -3,7 +3,7 @@ package model;
 import java.time.LocalDate;
 
 public class Order {
-    private final int number;
+    private final int id;
     private final Book book;
     private final User customer;
 
@@ -13,7 +13,7 @@ public class Order {
     private OrderStatus status = OrderStatus.NEW;
 
     public Order(int number, Book book, User customer, BookRequest request){
-        this.number = number;
+        this.id = number;
         this.book = book;
         this.customer = customer;
         this.request = request;
@@ -33,8 +33,8 @@ public class Order {
         return request != null && request.isOpen();
     }
 
-    public int getNumber() {
-        return number;
+    public int getId() {
+        return id;
     }
 
     public float getCost() {
@@ -59,6 +59,6 @@ public class Order {
 
     @Override
     public String toString() {
-        return "Заказ #" + number + " на " + book.getName() + " (" + cost + ", " + date + ") - " + status;
+        return "Заказ #" + id + " на " + book.getName() + " (" + cost + ", " + date + ") - " + status;
     }
 }

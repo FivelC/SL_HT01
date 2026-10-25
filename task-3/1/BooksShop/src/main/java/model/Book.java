@@ -13,9 +13,9 @@ public class Book {
     private float cost;
     private BookStatus status = BookStatus.AVAILABLE;
     private final String description;
+    private final int id;
 
-
-    public Book(String name, String author, LocalDate date, String genre, float rating, float cost, boolean ebook, BookStatus status, String description, LocalDate arrivalDate){
+    public Book(String name, String author, LocalDate date, String genre, float rating, float cost, boolean ebook, BookStatus status, String description, LocalDate arrivalDate, int id){
         this.name = name;
         this.author = author;
         this.date = date;
@@ -26,6 +26,7 @@ public class Book {
         this.status = status;
         this.description = description;
         this.arrivalDate = arrivalDate;
+        this.id = id;
     }
 
     public String getName() {
@@ -62,6 +63,18 @@ public class Book {
 
     public String getDescription() {
         return description;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public String getGenre() {
+        return genre;
     }
 
     @Override
