@@ -1,10 +1,13 @@
 package view;
 
-public class Menu {
-    String name;
-    MenuItem[] menuItems;
+import java.util.ArrayList;
+import java.util.List;
 
-    public MenuItem[] getMenuItems() {
+public class Menu {
+    private String name;
+    private List<MenuItem> menuItems = null;
+
+    public List<MenuItem> getMenuItems() {
         return menuItems;
     }
 
@@ -12,7 +15,7 @@ public class Menu {
         return name;
     }
 
-    public void setMenuItems(MenuItem[] menuItems) {
+    public void setMenuItems(List<MenuItem> menuItems) {
         this.menuItems = menuItems;
     }
 

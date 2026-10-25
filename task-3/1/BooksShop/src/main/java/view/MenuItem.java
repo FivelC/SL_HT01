@@ -18,7 +18,4 @@ public class MenuItem {
     }
     public String getTitle() { return title; }
     public Menu getNextMenu() { return nextMenu; }
-
-
-
 }

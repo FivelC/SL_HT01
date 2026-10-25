@@ -2,8 +2,6 @@ package controller;
 
 import view.Navigator;
 
-import java.util.Scanner;
-
 public class MenuController {
     private final Builder builder;
     private Navigator navigator;
@@ -13,11 +11,10 @@ public class MenuController {
     }
     public void run(){
         navigator = new Navigator(builder.getRootMenu());
-        Scanner scanner = new Scanner(System.in);
 
         while(true){
             navigator.printMenu();
-            int choice = scanner.nextInt();
+            int choice = ConsoleInput.getInstance().readInt("> ");
             navigator.navigate(choice);
         }
     }

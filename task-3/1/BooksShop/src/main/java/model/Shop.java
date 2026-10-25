@@ -105,15 +105,6 @@ public class Shop {
         return res;
     }
 
-    public String getOrderInfo(Order order){
-        Book book = order.getBook();
-        return "Заказ: " + order.getNumber() + '\n' +
-                "Книга: " + book.getName() + '\n' +
-                "Статус: " + order.getStatus() + '\n' +
-                "Дата выполнения: " + (order.getDate() == null ? "не выполнен" : order.getDate()) + '\n' +
-                "К оплате: " + order.getCost() + '\n' +
-                "Заказчик: " + order.getCustomer();
-    }
 
     public List<BookRequest> getRequests() {
         return requestProcessor.getRequests();
@@ -122,4 +113,5 @@ public class Shop {
     public List<RequestInfo> getRequests(SortRequest sort) {
         return requestProcessor.getRequests(sort);
     }
+
 }
