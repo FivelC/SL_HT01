@@ -5,7 +5,6 @@ import model.*;
 import controller.ConsoleInput;
 import view.IAction;
 
-/** Показать описание книги. */
 public class ShowDescriptionAction implements IAction {
     @Override
     public void execute() {

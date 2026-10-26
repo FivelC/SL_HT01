@@ -34,10 +34,14 @@ public class Builder {
         Menu requestsMenu = new Menu();
         requestsMenu.setName("Запросы");
 
+        Menu CsvMenu = new Menu();
+        CsvMenu.setName("Экспорт/Импорт");
+
         rootMenu.setMenuItems(List.of(
                 new MenuItem("Книги", null, booksMenu),
                 new MenuItem("Заказы", null, ordersMenu),
                 new MenuItem("Запросы", null, requestsMenu),
+                new MenuItem("Экспорт/Импорт", null, CsvMenu),
                 new MenuItem("Выход", () -> System.exit(0), null)
         ));
 
@@ -64,6 +68,13 @@ public class Builder {
 
         requestsMenu.setMenuItems(List.of(
                 new MenuItem("Показать запросы", requests.createShowAction(), requestsMenu),
+                new MenuItem("Назад", null, rootMenu)
+        ));
+
+        CsvMenu.setMenuItems(List.of(
+                new MenuItem("Экспорт Книг",new ExportBookAction(), CsvMenu),
+                new MenuItem("Экспорт Заказов", new ExportOrderAction(), CsvMenu),
+                new MenuItem("Экспорт Запросов", new ExportRequestAction(), CsvMenu),
                 new MenuItem("Назад", null, rootMenu)
         ));
     }

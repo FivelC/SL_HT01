@@ -12,8 +12,8 @@ public class RequestProcessor {
     private List<BookRequest> requests = new ArrayList<>();
     private int lastRequestNumber = 0;
 
-    public BookRequest createRequest(Book book){
-        BookRequest request = new BookRequest(++lastRequestNumber, book);
+    public BookRequest createRequest(Book book, User user){
+        BookRequest request = new BookRequest(++lastRequestNumber, book, user);
         requests.add(request);
         return request;
     }

@@ -77,6 +77,10 @@ public class Book {
         return genre;
     }
 
+    public boolean isEbook() {
+        return ebook;
+    }
+
     @Override
     public String toString() {
         return name + " (" + author + ") - " + status;

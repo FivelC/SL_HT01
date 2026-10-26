@@ -9,7 +9,6 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
-/** Показать выполненные заказы за период. */
 public class ShowCompletedOrdersAction implements IAction {
     @Override
     public void execute() {

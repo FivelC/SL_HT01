@@ -7,7 +7,6 @@ import view.IAction;
 
 import java.util.List;
 
-/** Показать запросы с сортировкой. */
 public class ShowRequestsAction implements IAction {
     @Override
     public void execute() {

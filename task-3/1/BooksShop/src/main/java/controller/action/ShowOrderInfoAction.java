@@ -6,7 +6,6 @@ import controller.ConsoleInput;
 import view.IAction;
 import view.OrderView;
 
-/** Показать детали заказа. */
 public class ShowOrderInfoAction implements IAction {
     @Override
     public void execute() {

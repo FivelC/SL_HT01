@@ -5,7 +5,6 @@ import model.*;
 import controller.ConsoleInput;
 import view.IAction;
 
-/** Поступление книги на склад. */
 public class StoreBookAction implements IAction {
     @Override
     public void execute() {

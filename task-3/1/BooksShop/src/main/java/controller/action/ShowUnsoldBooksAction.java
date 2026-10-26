@@ -7,7 +7,6 @@ import view.IAction;
 
 import java.util.List;
 
-/** Показать залежавшиеся книги. */
 public class ShowUnsoldBooksAction implements IAction {
     @Override
     public void execute() {

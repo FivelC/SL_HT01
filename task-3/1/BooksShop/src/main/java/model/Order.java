@@ -6,7 +6,6 @@ public class Order {
     private final int id;
     private final Book book;
     private final User customer;
-
     private final float cost;
     private LocalDate date = null;
     private final BookRequest request;
@@ -55,6 +54,10 @@ public class Order {
 
     public User getCustomer() {
         return customer;
+    }
+
+    public BookRequest getRequest() {
+        return request;
     }
 
     @Override

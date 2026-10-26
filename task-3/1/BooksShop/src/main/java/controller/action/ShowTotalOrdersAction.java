@@ -7,7 +7,6 @@ import view.IAction;
 
 import java.time.LocalDate;
 
-/** Показать количество выполненных заказов за период. */
 public class ShowTotalOrdersAction implements IAction {
     @Override
     public void execute() {

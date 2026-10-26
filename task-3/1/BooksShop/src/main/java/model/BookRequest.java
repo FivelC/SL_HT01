@@ -4,10 +4,12 @@ public class BookRequest {
     private final int id;
     private final Book book;
     private RequestStatus status = RequestStatus.OPEN;
+    private User castomer;
 
-    public BookRequest(int number, Book book){
+    public BookRequest(int number, Book book, User user){
         this.id = number;
         this.book = book;
+        this.castomer = user;
     }
 
     public void closed(){
@@ -24,6 +26,10 @@ public class BookRequest {
 
     public int getId() {
         return id;
+    }
+
+    public User getCastomer() {
+        return castomer;
     }
 
     public RequestStatus getStatus() {

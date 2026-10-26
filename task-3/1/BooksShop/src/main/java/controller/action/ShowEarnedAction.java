@@ -8,7 +8,6 @@ import view.IAction;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-/** Показать доход за период. */
 public class ShowEarnedAction implements IAction {
     @Override
     public void execute() {

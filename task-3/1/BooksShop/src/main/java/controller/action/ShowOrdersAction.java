@@ -7,7 +7,6 @@ import view.IAction;
 
 import java.util.List;
 
-/** Показать заказы с сортировкой. */
 public class ShowOrdersAction implements IAction {
     @Override
     public void execute() {

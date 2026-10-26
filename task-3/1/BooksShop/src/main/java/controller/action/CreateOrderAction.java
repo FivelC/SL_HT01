@@ -6,7 +6,6 @@ import controller.ConsoleInput;
 import view.IAction;
 import view.OrderView;
 
-/** Создать заказ. */
 public class CreateOrderAction implements IAction {
     @Override
     public void execute() {

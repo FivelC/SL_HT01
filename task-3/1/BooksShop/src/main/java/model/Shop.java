@@ -31,12 +31,12 @@ public class Shop {
         requestProcessor.closeRequests(book);
     }
 
-    public BookRequest createRequest(Book book){
+    public BookRequest createRequest(Book book, User customer){
         if (storage.isAvailable(book)) throw new IllegalStateException(book.getName() + " есть в наличии");
-        return requestProcessor.createRequest(book);
+        return requestProcessor.createRequest(book, customer);
     }
     public Order createOrder(Book book, User customer){
-        BookRequest request = storage.isAvailable(book) ? null : requestProcessor.createRequest(book);
+        BookRequest request = storage.isAvailable(book) ? null : requestProcessor.createRequest(book, customer);
         return orderProcessor.createOrder(book, request, customer);
     }
 
