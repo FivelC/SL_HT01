@@ -1,8 +1,6 @@
 package controller.factory;
 
-import controller.action.CancelOrderAction;
-import controller.action.CreateOrderAction;
-import controller.action.ShowOrdersAction;
+import controller.action.*;
 import view.IAction;
 
 public class OrderActionFactory implements IActionFactory {
@@ -20,5 +18,15 @@ public class OrderActionFactory implements IActionFactory {
     @Override
     public IAction createRemoveAction() {
         return new CancelOrderAction();
+    }
+
+    @Override
+    public IAction importAction() {
+        return new ImportOrderAction();
+    }
+
+    @Override
+    public IAction exportAction() {
+        return new ExportOrderAction();
     }
 }

@@ -8,4 +8,8 @@ public interface IActionFactory {
     IAction createAddAction();
 
     IAction createRemoveAction();
+
+    IAction importAction();
+
+    IAction exportAction();
 }

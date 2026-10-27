@@ -72,12 +72,12 @@ public class Builder {
         ));
 
         CsvMenu.setMenuItems(List.of(
-                new MenuItem("Экспорт Книг",new ExportBookAction(), CsvMenu),
-                new MenuItem("Экспорт Заказов", new ExportOrderAction(), CsvMenu),
-                new MenuItem("Экспорт Запросов", new ExportRequestAction(), CsvMenu),
-                new MenuItem("Импорт Книг", new ImportBookAction(), CsvMenu),
-                new MenuItem("Импорт Запросов", new ImportRequestAction(), CsvMenu),
-                new MenuItem("Импорт Заказов", new ImportOrderAction(), CsvMenu),
+                new MenuItem("Экспорт Книг", books.exportAction(), CsvMenu),
+                new MenuItem("Экспорт Заказов", orders.exportAction(), CsvMenu),
+                new MenuItem("Экспорт Запросов", requests.exportAction(), CsvMenu),
+                new MenuItem("Импорт Книг", books.importAction(), CsvMenu),
+                new MenuItem("Импорт Запросов", requests.importAction(), CsvMenu),
+                new MenuItem("Импорт Заказов", orders.importAction(), CsvMenu),
                 new MenuItem("Назад", null, rootMenu)
         ));
     }

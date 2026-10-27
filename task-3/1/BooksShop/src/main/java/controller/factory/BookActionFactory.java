@@ -1,8 +1,6 @@
 package controller.factory;
 
-import controller.action.RemoveBookAction;
-import controller.action.ShowBooksAction;
-import controller.action.StoreBookAction;
+import controller.action.*;
 import view.IAction;
 
 public class BookActionFactory implements IActionFactory {
@@ -19,5 +17,15 @@ public class BookActionFactory implements IActionFactory {
     @Override
     public IAction createRemoveAction() {
         return new RemoveBookAction();
+    }
+
+    @Override
+    public IAction importAction() {
+        return new ImportBookAction();
+    }
+
+    @Override
+    public IAction exportAction() {
+        return new ExportBookAction();
     }
 }
