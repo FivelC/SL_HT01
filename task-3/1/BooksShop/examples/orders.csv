@@ -1,0 +1,6 @@
+id;bookId;firstName;lastName;requestId;cost;date;status
+1;1;Мария;Иванова;;500.0;2026-09-15;COMPLETED
+2;2;Иван;Петров;1;750.0;;NEW
+3;6;Анна;Смирнова;2;600.0;;NEW
+4;7;Пётр;Сидоров;;450.0;;CANCELED
+5;4;Олег;Ким;3;400.0;2026-10-01;COMPLETED

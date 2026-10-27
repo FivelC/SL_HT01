@@ -15,6 +15,24 @@ public class OrderProcessor {
         return order;
     }
 
+    public Order findById(int id) {
+        for (Order order : orders) {
+            if (order.getId() == id) return order;
+        }
+        return null;
+    }
+
+    public void importOrder(Order order) {
+        Order existing = findById(order.getId());
+        if (existing != null) {
+            existing.update(order);
+        } else {
+            orders.add(order);
+        }
+
+        lastOrderNumber = Math.max(lastOrderNumber, order.getId());
+    }
+
     public void changeStatus(Order order, OrderStatus status){
         changeStatus(order, status, LocalDate.now());
     }
@@ -77,5 +95,4 @@ public class OrderProcessor {
         if (comparator != null) res.sort(comparator);
         return res;
     }
-
 }

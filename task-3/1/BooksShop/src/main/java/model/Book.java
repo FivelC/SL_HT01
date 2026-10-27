@@ -3,19 +3,41 @@ package model;
 import java.time.LocalDate;
 
 public class Book {
-    private final boolean ebook;
-    private final String name;
-    private final String genre;
-    private final String author;
-    private final LocalDate date;
+    private boolean ebook;
+    private String name;
+    private String genre;
+    private String author;
+    private LocalDate date;
     private LocalDate arrivalDate;
     private float rating;
     private float cost;
     private BookStatus status = BookStatus.AVAILABLE;
-    private final String description;
+    private String description;
     private final int id;
 
-    public Book(String name, String author, LocalDate date, String genre, float rating, float cost, boolean ebook, BookStatus status, String description, LocalDate arrivalDate, int id){
+    public Book(int id,String name, String author, LocalDate date, String genre,
+                float rating, float cost, boolean ebook, BookStatus status,
+                String description, LocalDate arrivalDate){
+        if(id <= 0) throw new IllegalArgumentException("Id не может быть отрицательным: " + id);
+        if (name == null || name.isBlank()) throw new IllegalArgumentException("Пустое название книги");
+        if (author == null || author.isBlank()) throw new IllegalArgumentException("Пустое поле с автором");
+        if (genre == null || genre.isBlank()) throw new IllegalArgumentException("Пустое поле с жанром");
+        if (description == null || description.isBlank()) throw new IllegalArgumentException("Пустое поле с описанием");
+        if (rating > 5.0 || rating <0.0) throw new IllegalArgumentException("Рейтинг должен быть от 0.0 до 5.0");
+        if (cost < 0.0) throw new IllegalArgumentException("Цена не должна быть ниже 0.0");
+
+        LocalDate today = LocalDate.now();
+
+        if (date != null && date.isAfter(today)) {
+            throw new IllegalArgumentException("Дата издания в будущем: " + date);
+        }
+        if (arrivalDate != null && arrivalDate.isAfter(today)) {
+            throw new IllegalArgumentException("Дата поступления в будущем: " + arrivalDate);
+        }
+        if (date != null && arrivalDate != null && arrivalDate.isBefore(date)) {
+            throw new IllegalArgumentException("Книга поступила раньше, чем была издана: " + arrivalDate);
+        }
+
         this.name = name;
         this.author = author;
         this.date = date;
@@ -29,6 +51,19 @@ public class Book {
         this.id = id;
     }
 
+    public void update(Book other){
+        if (other.id != this.id) throw new IllegalArgumentException("Нельзя обновить книгу чужими данными");
+        this.name = other.name;
+        this.author = other.author;
+        this.date = other.date;
+        this.genre = other.genre;
+        this.rating = other.rating;
+        this.cost = other.cost;
+        this.ebook = other.ebook;
+        this.status = other.status;
+        this.description = other.description;
+        this.arrivalDate = other.arrivalDate;
+    }
     public String getName() {
         return name;
     }

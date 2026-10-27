@@ -1,0 +1,4 @@
+id;bookId;firstName;lastName;status
+1;2;Иван;Петров;OPEN
+2;6;Анна;Смирнова;OPEN
+3;4;Олег;Ким;CLOSED

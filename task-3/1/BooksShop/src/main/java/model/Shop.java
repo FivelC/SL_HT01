@@ -26,6 +26,32 @@ public class Shop {
         storeBook(book, LocalDate.now());
     }
 
+    public void importBooks(List<Book> books){
+        for(Book book : books){
+            storage.importBook(book);
+        }
+    }
+
+    public Book findBookById(int id){
+        return storage.findById(id);
+    }
+
+    public BookRequest findRequestById(int id){
+        return requestProcessor.findById(id);
+    }
+
+    public void importOrders(List<Order> orders){
+        for (Order order : orders){
+            orderProcessor.importOrder(order);
+        }
+    }
+
+    public void importRequests(List<BookRequest> requests){
+        for (BookRequest request : requests){
+            requestProcessor.importRequest(request);
+        }
+    }
+
     public void storeBook(Book book, LocalDate arrivalDate){
         storage.storeBook(book, arrivalDate);
         requestProcessor.closeRequests(book);

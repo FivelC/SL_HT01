@@ -24,6 +24,23 @@ public class RequestProcessor {
         }
     }
 
+    public BookRequest findById(int id) {
+        for (BookRequest request : requests) {
+            if (request.getId() == id) return request;
+        }
+        return null;
+    }
+
+    public void importRequest(BookRequest request) {
+        BookRequest existing = findById(request.getId());
+        if (existing != null) {
+            existing.update(request);
+        } else {
+            requests.add(request);
+        }
+        lastRequestNumber = Math.max(lastRequestNumber, request.getId());
+    }
+
     public List<BookRequest> getRequests() {
         return List.copyOf(requests);
     }

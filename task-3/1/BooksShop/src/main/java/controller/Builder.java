@@ -75,6 +75,9 @@ public class Builder {
                 new MenuItem("Экспорт Книг",new ExportBookAction(), CsvMenu),
                 new MenuItem("Экспорт Заказов", new ExportOrderAction(), CsvMenu),
                 new MenuItem("Экспорт Запросов", new ExportRequestAction(), CsvMenu),
+                new MenuItem("Импорт Книг", new ImportBookAction(), CsvMenu),
+                new MenuItem("Импорт Запросов", new ImportRequestAction(), CsvMenu),
+                new MenuItem("Импорт Заказов", new ImportOrderAction(), CsvMenu),
                 new MenuItem("Назад", null, rootMenu)
         ));
     }

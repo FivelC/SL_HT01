@@ -1,0 +1,3 @@
+id;name;author;date;genre;rating;cost;ebook;status;description;arrivalDate
+8;Нормальная книга;Автор;2000-01-01;Роман;4.0;300.0;false;AVAILABLE;Всё в порядке;2025-01-01
+9;Отрицательная цена;Автор;2000-01-01;Роман;4.0;-100;false;AVAILABLE;Цена меньше нуля;2025-01-01

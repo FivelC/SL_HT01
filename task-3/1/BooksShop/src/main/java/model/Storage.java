@@ -24,6 +24,22 @@ public class Storage {
         book.setArrivalDate(arrivalDate);
     }
 
+    public void importBook(Book book) {
+        Book existing = findById(book.getId());
+        if (existing != null) {
+            existing.update(book);
+        } else {
+            books.add(book);
+        }
+    }
+
+    public Book findById(int id) {
+        for(int i = 0; i < books.size(); i++){
+            if(books.get(i).getId() == id) return books.get(i);
+        }
+        return null;
+    }
+
     public void removeBook(Book book){
         checkBook(book);
         book.setStatus(BookStatus.NOT_AVAILABLE);
