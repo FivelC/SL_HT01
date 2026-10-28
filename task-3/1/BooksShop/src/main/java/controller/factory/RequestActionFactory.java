@@ -1,9 +1,6 @@
 package controller.factory;
 
-import controller.action.CancelOrderAction;
-import controller.action.ExportRequestAction;
-import controller.action.ImportRequestAction;
-import controller.action.ShowRequestsAction;
+import controller.action.*;
 import view.IAction;
 
 public class RequestActionFactory implements IActionFactory{
@@ -19,7 +16,7 @@ public class RequestActionFactory implements IActionFactory{
 
     @Override
     public IAction createRemoveAction() {
-        return null;
+        return new CancelRequestAction();
     }
 
     @Override

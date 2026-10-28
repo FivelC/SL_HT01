@@ -24,6 +24,12 @@ public class RequestProcessor {
         }
     }
 
+    public void closeRequest(BookRequest request){
+        for(BookRequest br : requests){
+            if(br.getId() == request.getId()) request.closed();
+        }
+    }
+
     public BookRequest findById(int id) {
         for (BookRequest request : requests) {
             if (request.getId() == id) return request;

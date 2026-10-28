@@ -1,7 +1,9 @@
 package controller;
 
+import config.ShopConfig;
 import model.*;
 
+import java.nio.file.Path;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -20,7 +22,8 @@ public class ShopProvider {
                 "Роман о князе Мышкине", LocalDate.of(2024, 10, 5));
         Book book5 = new Book(5,"Отцы и дети", "Тургенев", LocalDate.of(1862, 1, 1), "Роман", 4.3f, 350, false, BookStatus.AVAILABLE,
                 "Роман о конфликте поколений", LocalDate.of(2025, 3, 1));
-        shop = new Shop(new Storage(List.of(book1,book2,book3,book4,book5)), new OrderProcessor(), new RequestProcessor());
+        ShopConfig config = new ShopConfig(Path.of("config.properties"));
+        shop = new Shop(new Storage(List.of(book1,book2,book3,book4,book5)), new OrderProcessor(), new RequestProcessor(),config.getUnsoldMonths(), config.isAutoCloseRequests());
     }
 
     public static ShopProvider getInstance(){

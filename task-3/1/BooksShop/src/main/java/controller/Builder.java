@@ -68,6 +68,7 @@ public class Builder {
 
         requestsMenu.setMenuItems(List.of(
                 new MenuItem("Показать запросы", requests.createShowAction(), requestsMenu),
+                new MenuItem("Закрыть запрос", requests.createRemoveAction(), requestsMenu),
                 new MenuItem("Назад", null, rootMenu)
         ));
 

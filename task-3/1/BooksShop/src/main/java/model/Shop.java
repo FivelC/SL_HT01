@@ -6,16 +6,19 @@ import java.util.Comparator;
 import java.util.List;
 
 public class Shop {
-    private static final int UNSOLD_MONTHS = 6;
+    private final int unsoldMonths;
+    private final boolean autoCloseRequests;
 
     private final Storage storage;
     private final OrderProcessor orderProcessor;
     private final RequestProcessor requestProcessor;
 
-    public Shop(Storage storage, OrderProcessor orderProcessor, RequestProcessor requestProcessor){
+    public Shop(Storage storage, OrderProcessor orderProcessor, RequestProcessor requestProcessor,int unsoldMonths,boolean autoCloseRequests){
         this.storage = storage;
         this.orderProcessor = orderProcessor;
         this.requestProcessor = requestProcessor;
+        this.unsoldMonths = unsoldMonths;
+        this.autoCloseRequests = autoCloseRequests;
     }
 
     public void removeBook(Book book){
@@ -54,13 +57,14 @@ public class Shop {
 
     public void storeBook(Book book, LocalDate arrivalDate){
         storage.storeBook(book, arrivalDate);
-        requestProcessor.closeRequests(book);
+        if(autoCloseRequests) requestProcessor.closeRequests(book);
+
     }
 
-    public BookRequest createRequest(Book book, User customer){
-        if (storage.isAvailable(book)) throw new IllegalStateException(book.getName() + " есть в наличии");
-        return requestProcessor.createRequest(book, customer);
-    }
+//    public BookRequest createRequest(Book book, User customer){
+//        if (storage.isAvailable(book)) throw new IllegalStateException(book.getName() + " есть в наличии");
+//        return requestProcessor.createRequest(book, customer);
+//    }
     public Order createOrder(Book book, User customer){
         BookRequest request = storage.isAvailable(book) ? null : requestProcessor.createRequest(book, customer);
         return orderProcessor.createOrder(book, request, customer);
@@ -70,13 +74,23 @@ public class Shop {
         orderProcessor.cancelOrder(order);
     }
 
+    public void closeRequest(BookRequest request){
+        if (!storage.isAvailable(request.getBook()))
+            throw new IllegalStateException("Нельзя закрыть запрос: книги «" + request.getBook().getName() + "» нет на складе");
+        requestProcessor.closeRequest(request);
+    }
+
+    public void closeRequests(Book book){
+        requestProcessor.closeRequests(book);
+    }
+
     public void changeOrderStatus(Order order, OrderStatus status){
         orderProcessor.changeStatus(order, status);
     }
 
-    public void completeOrder(Order order, LocalDate date){
-        orderProcessor.changeStatus(order, OrderStatus.COMPLETED, date);
-    }
+//    public void completeOrder(Order order, LocalDate date){
+//        orderProcessor.changeStatus(order, OrderStatus.COMPLETED, date);
+//    }
 
     public List<Book> getBooks(SortBook status) {
         return storage.getBooks(status);
@@ -91,7 +105,7 @@ public class Shop {
     }
 
     public List<Book> getUnsoldBooks(SortUnsoldBook sort, LocalDate today){
-        LocalDate border = today.minusMonths(UNSOLD_MONTHS);
+        LocalDate border = today.minusMonths(unsoldMonths);
         List<Book> res = new ArrayList<>();
         for (Book book : storage.getBooks(SortBook.NONE)){
             if (book.getStatus() != BookStatus.AVAILABLE) continue;
@@ -128,6 +142,11 @@ public class Shop {
     public List<BookRequest> getRequests() {
         return requestProcessor.getRequests();
     }
+
+    public boolean isAutoCloseRequests() {
+        return autoCloseRequests;
+    }
+
 
     public List<RequestInfo> getRequests(SortRequest sort) {
         return requestProcessor.getRequests(sort);
