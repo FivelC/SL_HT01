@@ -1,8 +1,9 @@
 package model;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Order {
+public class Order  {
     private final int id;
     private Book book;
     private User customer;

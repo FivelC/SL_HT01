@@ -1,11 +1,14 @@
 package model;
 
+import config.ShopConfig;
+
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
-public class Shop {
+public class Shop{
     private final int unsoldMonths;
     private final boolean autoCloseRequests;
 

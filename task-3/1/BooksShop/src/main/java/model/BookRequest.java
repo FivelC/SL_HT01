@@ -1,5 +1,7 @@
 package model;
 
+import java.io.Serializable;
+
 public class BookRequest {
     private final int id;
     private Book book;
