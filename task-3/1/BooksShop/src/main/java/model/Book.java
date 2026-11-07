@@ -1,8 +1,22 @@
 package model;
 
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+
 import java.io.Serializable;
 import java.time.LocalDate;
-
+@JsonPropertyOrder({
+        "id",
+        "name",
+        "author",
+        "genre",
+        "date",
+        "arrivalDate",
+        "description",
+        "cost",
+        "rating",
+        "ebook",
+        "status"
+})
 public class Book {
     private boolean ebook;
     private String name;

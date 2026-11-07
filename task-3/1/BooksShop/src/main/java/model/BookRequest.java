@@ -1,7 +1,13 @@
 package model;
 
-import java.io.Serializable;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
+import java.io.Serializable;
+@JsonPropertyOrder({
+        "id",
+        "book",
+        "customer"
+})
 public class BookRequest {
     private final int id;
     private Book book;

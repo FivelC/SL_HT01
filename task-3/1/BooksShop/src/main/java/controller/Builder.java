@@ -76,6 +76,7 @@ public class Builder {
                 new MenuItem("Экспорт Книг", books.exportAction(), CsvMenu),
                 new MenuItem("Экспорт Заказов", orders.exportAction(), CsvMenu),
                 new MenuItem("Экспорт Запросов", requests.exportAction(), CsvMenu),
+                new MenuItem("Экспорт Магазина(JSON)", new SerializeAction(),CsvMenu),
                 new MenuItem("Импорт Книг", books.importAction(), CsvMenu),
                 new MenuItem("Импорт Запросов", requests.importAction(), CsvMenu),
                 new MenuItem("Импорт Заказов", orders.importAction(), CsvMenu),

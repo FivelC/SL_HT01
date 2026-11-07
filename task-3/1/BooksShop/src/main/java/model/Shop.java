@@ -16,6 +16,7 @@ public class Shop{
     private final OrderProcessor orderProcessor;
     private final RequestProcessor requestProcessor;
 
+
     public Shop(Storage storage, OrderProcessor orderProcessor, RequestProcessor requestProcessor,int unsoldMonths,boolean autoCloseRequests){
         this.storage = storage;
         this.orderProcessor = orderProcessor;

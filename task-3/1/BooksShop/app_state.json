@@ -1,0 +1,132 @@
+{
+  "books" : [ {
+    "id" : 1,
+    "name" : "Мастер и Маргарита",
+    "author" : "Булгаков",
+    "genre" : "Роман",
+    "date" : "1967-01-01",
+    "arrivalDate" : "2025-01-10",
+    "description" : "Роман о визите дьявола в Москву 1930-х годов",
+    "cost" : 500.0,
+    "rating" : 4.8,
+    "ebook" : false,
+    "status" : "AVAILABLE"
+  }, {
+    "id" : 2,
+    "name" : "Война и мир",
+    "author" : "Толстой",
+    "genre" : "Роман",
+    "date" : "1869-01-01",
+    "arrivalDate" : "2024-09-01",
+    "description" : "Роман-эпопея об эпохе наполеоновских войн",
+    "cost" : 700.0,
+    "rating" : 4.6,
+    "ebook" : false,
+    "status" : "NOT_AVAILABLE"
+  }, {
+    "id" : 3,
+    "name" : "Преступление и наказание",
+    "author" : "Достоевский",
+    "genre" : "Роман",
+    "date" : "1866-01-01",
+    "arrivalDate" : "2024-11-20",
+    "description" : "История студента Раскольникова",
+    "cost" : 450.0,
+    "rating" : 4.7,
+    "ebook" : true,
+    "status" : "AVAILABLE"
+  }, {
+    "id" : 4,
+    "name" : "Идиот",
+    "author" : "Достоевский",
+    "genre" : "Роман",
+    "date" : "1869-01-01",
+    "arrivalDate" : "2024-10-05",
+    "description" : "Роман о князе Мышкине",
+    "cost" : 400.0,
+    "rating" : 1.1,
+    "ebook" : false,
+    "status" : "NOT_AVAILABLE"
+  }, {
+    "id" : 5,
+    "name" : "Отцы и дети",
+    "author" : "Тургенев",
+    "genre" : "Роман",
+    "date" : "1862-01-01",
+    "arrivalDate" : "2025-03-01",
+    "description" : "Роман о конфликте поколений",
+    "cost" : 350.0,
+    "rating" : 4.3,
+    "ebook" : false,
+    "status" : "AVAILABLE"
+  } ],
+  "orders" : [ {
+    "id" : 1,
+    "book" : {
+      "id" : 2,
+      "name" : "Война и мир",
+      "author" : "Толстой",
+      "genre" : "Роман",
+      "date" : "1869-01-01",
+      "arrivalDate" : "2024-09-01",
+      "description" : "Роман-эпопея об эпохе наполеоновских войн",
+      "cost" : 700.0,
+      "rating" : 4.6,
+      "ebook" : false,
+      "status" : "NOT_AVAILABLE"
+    },
+    "customer" : {
+      "firstName" : "asd",
+      "lastName" : "dsa"
+    },
+    "request" : {
+      "book" : {
+        "id" : 2,
+        "name" : "Война и мир",
+        "author" : "Толстой",
+        "genre" : "Роман",
+        "date" : "1869-01-01",
+        "arrivalDate" : "2024-09-01",
+        "description" : "Роман-эпопея об эпохе наполеоновских войн",
+        "cost" : 700.0,
+        "rating" : 4.6,
+        "ebook" : false,
+        "status" : "NOT_AVAILABLE"
+      },
+      "castomer" : {
+        "firstName" : "asd",
+        "lastName" : "dsa"
+      },
+      "id" : 1,
+      "open" : true,
+      "status" : "OPEN"
+    },
+    "cost" : 700.0,
+    "date" : null,
+    "status" : "NEW",
+    "waitingForBook" : true
+  } ],
+  "requests" : [ {
+    "book" : {
+      "id" : 2,
+      "name" : "Война и мир",
+      "author" : "Толстой",
+      "genre" : "Роман",
+      "date" : "1869-01-01",
+      "arrivalDate" : "2024-09-01",
+      "description" : "Роман-эпопея об эпохе наполеоновских войн",
+      "cost" : 700.0,
+      "rating" : 4.6,
+      "ebook" : false,
+      "status" : "NOT_AVAILABLE"
+    },
+    "castomer" : {
+      "firstName" : "asd",
+      "lastName" : "dsa"
+    },
+    "id" : 1,
+    "open" : true,
+    "status" : "OPEN"
+  } ],
+  "autoCloseRequests" : false
+}

@@ -3,7 +3,9 @@ package controller;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import config.ShopConfig;
 import model.*;
+import persistence.DeserializeShop;
 
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.time.LocalDate;
@@ -14,23 +16,13 @@ public class ShopProvider {
     private final Shop shop;
 
 
-    private ShopProvider(){
+    private ShopProvider() throws IOException {
         ShopConfig config = new ShopConfig(Path.of("config.properties"));
-        Path saveFile = Path.of("shop.json");
+        DeserializeShop.restore();
 
-        if (Files.exists(saveFile)) {
-            try {
-                Shop loaded = emptyShop(config);
-                JsonStorage.load(saveFile, loaded);
-                shop = loaded;
-                System.out.println("Загружено сохранение: " + saveFile.toAbsolutePath());
-                return;
-            } catch (IOException | IllegalArgumentException e) {
-                System.out.println("Не удалось загрузить " + saveFile.toAbsolutePath() + ": " + e.getMessage()
-                        + ". Запускаю с тестовыми данными");
-            }
-        }
-        shop = testShop(config);
+    }
+
+//    private ShopProvider(){
 //        Book book1 = new Book(1,"Мастер и Маргарита", "Булгаков", LocalDate.of(1967, 1, 1), "Роман", 4.8f, 500, false, BookStatus.AVAILABLE,
 //                "Роман о визите дьявола в Москву 1930-х годов", LocalDate.of(2025, 1, 10));
 //        Book book2 = new Book(2,"Война и мир", "Толстой", LocalDate.of(1869, 1, 1), "Роман", 4.6f, 700, false, BookStatus.NOT_AVAILABLE,
@@ -43,9 +35,9 @@ public class ShopProvider {
 //                "Роман о конфликте поколений", LocalDate.of(2025, 3, 1));
 //        ShopConfig config = new ShopConfig(Path.of("config.properties"));
 //        shop = new Shop(new Storage(List.of(book1,book2,book3,book4,book5)), new OrderProcessor(), new RequestProcessor(),config.getUnsoldMonths(), config.isAutoCloseRequests());
-    }
+//    }
 
-    public static ShopProvider getInstance(){
+    public static ShopProvider getInstance() throws IOException {
         if (instance == null){
              instance = new ShopProvider();
         }
