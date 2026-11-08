@@ -80,6 +80,7 @@
       "lastName" : "dsa"
     },
     "request" : {
+      "id" : 1,
       "book" : {
         "id" : 2,
         "name" : "Война и мир",
@@ -93,13 +94,12 @@
         "ebook" : false,
         "status" : "NOT_AVAILABLE"
       },
-      "castomer" : {
+      "customer" : {
         "firstName" : "asd",
         "lastName" : "dsa"
       },
-      "id" : 1,
-      "open" : true,
-      "status" : "OPEN"
+      "status" : "OPEN",
+      "open" : true
     },
     "cost" : 700.0,
     "date" : null,
@@ -107,6 +107,7 @@
     "waitingForBook" : true
   } ],
   "requests" : [ {
+    "id" : 1,
     "book" : {
       "id" : 2,
       "name" : "Война и мир",
@@ -120,13 +121,12 @@
       "ebook" : false,
       "status" : "NOT_AVAILABLE"
     },
-    "castomer" : {
+    "customer" : {
       "firstName" : "asd",
       "lastName" : "dsa"
     },
-    "id" : 1,
-    "open" : true,
-    "status" : "OPEN"
+    "status" : "OPEN",
+    "open" : true
   } ],
   "autoCloseRequests" : false
 }

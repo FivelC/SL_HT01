@@ -5,12 +5,13 @@ import model.*;
 import controller.ConsoleInput;
 import view.IAction;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 public class ShowEarnedAction implements IAction {
     @Override
-    public void execute() {
+    public void execute() throws IOException {
         ConsoleInput input = ConsoleInput.getInstance();
         Shop shop = ShopProvider.getInstance().getShop();
 

@@ -1,5 +1,7 @@
 package model;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import java.io.Serializable;
@@ -30,9 +32,20 @@ public class Book {
     private String description;
     private final int id;
 
-    public Book(int id,String name, String author, LocalDate date, String genre,
-                float rating, float cost, boolean ebook, BookStatus status,
-                String description, LocalDate arrivalDate){
+    @JsonCreator
+    public Book(
+            @JsonProperty("id") int id,
+            @JsonProperty("name") String name,
+            @JsonProperty("author") String author,
+            @JsonProperty("date") LocalDate date,
+            @JsonProperty("genre") String genre,
+            @JsonProperty("rating") float rating,
+            @JsonProperty("cost") float cost,
+            @JsonProperty("ebook") boolean ebook,
+            @JsonProperty("status") BookStatus status,
+            @JsonProperty("description") String description,
+            @JsonProperty("arrivalDate") LocalDate arrivalDate
+    ) {
         if(id <= 0) throw new IllegalArgumentException("Id не может быть отрицательным: " + id);
         if (name == null || name.isBlank()) throw new IllegalArgumentException("Пустое название книги");
         if (author == null || author.isBlank()) throw new IllegalArgumentException("Пустое поле с автором");
@@ -65,7 +78,6 @@ public class Book {
         this.arrivalDate = arrivalDate;
         this.id = id;
     }
-
     public void update(Book other){
         if (other.id != this.id) throw new IllegalArgumentException("Нельзя обновить книгу чужими данными");
         this.name = other.name;

@@ -6,9 +6,11 @@ import controller.ConsoleInput;
 import view.IAction;
 import view.OrderView;
 
+import java.io.IOException;
+
 public class CreateOrderAction implements IAction {
     @Override
-    public void execute() {
+    public void execute() throws IOException {
         ConsoleInput input = ConsoleInput.getInstance();
         Shop shop = ShopProvider.getInstance().getShop();
 

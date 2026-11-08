@@ -5,9 +5,11 @@ import model.*;
 import controller.ConsoleInput;
 import view.IAction;
 
+import java.io.IOException;
+
 public class ShowDescriptionAction implements IAction {
     @Override
-    public void execute() {
+    public void execute() throws IOException {
         ConsoleInput input = ConsoleInput.getInstance();
         Shop shop = ShopProvider.getInstance().getShop();
 

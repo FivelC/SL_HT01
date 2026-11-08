@@ -1,8 +1,8 @@
 package model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
-import java.io.Serializable;
 @JsonPropertyOrder({
         "id",
         "book",
@@ -12,26 +12,29 @@ public class BookRequest {
     private final int id;
     private Book book;
     private RequestStatus status;
-    private User castomer;
+    private User customer;
 
     public BookRequest(int number, Book book, User user){
         this(number, book, user, RequestStatus.OPEN);
     }
 
-    public BookRequest(int number, Book book, User user, RequestStatus status){
+    public BookRequest(@JsonProperty("id") int number,
+                       @JsonProperty("book") Book book,
+                       @JsonProperty("customer") User user,
+                       @JsonProperty("status") RequestStatus status){
         if (number <= 0) throw new IllegalArgumentException("Id запроса должен быть больше 0: " + number);
         if (book == null) throw new IllegalArgumentException("У запроса должна быть книга");
         if (status == null) throw new IllegalArgumentException("У запроса должен быть статус");
         this.id = number;
         this.book = book;
-        this.castomer = user;
+        this.customer = user;
         this.status = status;
     }
 
     public void update(BookRequest other){
         if (other.id != this.id) throw new IllegalArgumentException("Нельзя обновить запрос чужими данными");
         this.book = other.book;
-        this.castomer = other.castomer;
+        this.customer = other.customer;
         this.status = other.status;
     }
 
@@ -51,8 +54,8 @@ public class BookRequest {
         return id;
     }
 
-    public User getCastomer() {
-        return castomer;
+    public User getCustomer() {
+        return customer;
     }
 
     public RequestStatus getStatus() {

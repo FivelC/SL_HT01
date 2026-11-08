@@ -1,5 +1,7 @@
 package view;
 
+import java.io.IOException;
+
 public class MenuItem {
     private final String title;
     private final IAction action;
@@ -13,7 +15,11 @@ public class MenuItem {
 
     public void doAction() {
         if (action != null) {
-            action.execute();
+            try {
+                action.execute();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
         }
     }
     public String getTitle() { return title; }

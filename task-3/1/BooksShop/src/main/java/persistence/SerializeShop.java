@@ -12,7 +12,16 @@ import java.io.IOException;
 import java.util.List;
 
 public class SerializeShop {
-    private static Shop shop = ShopProvider.getInstance().getShop();
+    private static Shop shop;
+
+    static {
+        try {
+            shop = ShopProvider.getInstance().getShop();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     private static ObjectMapper mapper = new ObjectMapper();
     public static void serialize() throws IOException {
         ShopState state = new ShopState(

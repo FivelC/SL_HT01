@@ -7,11 +7,18 @@ import model.SortBook;
 import controller.ConsoleInput;
 import view.IAction;
 
+import java.io.IOException;
+
 public class RemoveBookAction implements IAction {
     @Override
     public void execute() {
         ConsoleInput input = ConsoleInput.getInstance();
-        Shop shop = ShopProvider.getInstance().getShop();
+        Shop shop = null;
+        try {
+            shop = ShopProvider.getInstance().getShop();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
 
         Book book = input.choose("Какую книгу списать?", shop.getBooks(SortBook.NONE));
         if (book == null) {

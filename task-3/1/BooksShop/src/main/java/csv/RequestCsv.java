@@ -31,8 +31,8 @@ public class RequestCsv implements ICsv<BookRequest>{
                 SEPARATOR,
                 String.valueOf(request.getId()),
                 String.valueOf(request.getBook().getId()),
-                request.getCastomer() == null ? "" : request.getCastomer().firstName(),
-                request.getCastomer() == null ? "" : request.getCastomer().lastName(),
+                request.getCustomer() == null ? "" : request.getCustomer().firstName(),
+                request.getCustomer() == null ? "" : request.getCustomer().lastName(),
                 String.valueOf(request.getStatus())
         );
     }

@@ -18,8 +18,8 @@ public class ShopProvider {
 
     private ShopProvider() throws IOException {
         ShopConfig config = new ShopConfig(Path.of("config.properties"));
-        DeserializeShop.restore();
-
+        shop = new Shop(new Storage(), new OrderProcessor(), new RequestProcessor(),config.getUnsoldMonths(), config.isAutoCloseRequests());
+        DeserializeShop.restore(shop);
     }
 
 //    private ShopProvider(){

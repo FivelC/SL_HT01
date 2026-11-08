@@ -1,5 +1,7 @@
 package model;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import java.io.Serializable;
@@ -23,14 +25,20 @@ public class Order  {
         this(number, book, customer, request, book.getCost(), null, OrderStatus.NEW);
     }
 
-    public Order(int number, Book book, User customer, BookRequest request,
-                 float cost, LocalDate date, OrderStatus status){
+    @JsonCreator
+    public Order(@JsonProperty("id") int number,
+                 @JsonProperty("book") Book book,
+                 @JsonProperty("customer") User customer,
+                 @JsonProperty("request") BookRequest request,
+                 @JsonProperty("cost") float cost,
+                 @JsonProperty("date") LocalDate date,
+                 @JsonProperty("status") OrderStatus status){
         if (number <= 0) throw new IllegalArgumentException("Id заказа должен быть больше 0: " + number);
         if (book == null) throw new IllegalArgumentException("У заказа должна быть книга");
         if (customer == null) throw new IllegalArgumentException("У заказа должен быть покупатель");
         if (status == null) throw new IllegalArgumentException("У заказа должен быть статус");
         if (!Float.isFinite(cost) || cost < 0) throw new IllegalArgumentException("Некорректная стоимость заказа: " + cost);
-        if (request != null && request.getBook() != book)
+        if (request != null && request.getBook().getId() != book.getId())
             throw new IllegalArgumentException("Запрос #" + request.getId() + " относится к другой книге");
         if (status == OrderStatus.COMPLETED && date == null)
             throw new IllegalArgumentException("У выполненного заказа должна быть дата");
@@ -46,7 +54,6 @@ public class Order  {
         this.date = date;
         this.status = status;
     }
-
     public void update(Order other){
         if (other.id != this.id) throw new IllegalArgumentException("Нельзя обновить заказ чужими данными");
         this.book = other.book;

@@ -14,7 +14,7 @@ import java.util.List;
 
 public class ExportOrderAction implements IAction {
     @Override
-    public void execute() {
+    public void execute() throws IOException {
         ConsoleInput input = ConsoleInput.getInstance();
         Shop shop = ShopProvider.getInstance().getShop();
 

@@ -8,9 +8,11 @@ import model.Shop;
 import model.SortBook;
 import view.IAction;
 
+import java.io.IOException;
+
 public class CancelRequestAction implements IAction {
     @Override
-    public void execute() {
+    public void execute() throws IOException {
         ConsoleInput input = ConsoleInput.getInstance();
         Shop shop = ShopProvider.getInstance().getShop();
 

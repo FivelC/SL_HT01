@@ -12,7 +12,7 @@ public class DeserializeShop {
     private static final ObjectMapper mapper = new ObjectMapper();
 
     private static ShopState deserialize() throws IOException {
-        File file = new File("app_sate.json");
+        File file = new File("app_state.json");
         if(!file.exists()) {
             throw new IOException("Файл сохранения не найден");
         }
@@ -20,10 +20,8 @@ public class DeserializeShop {
         return mapper.readValue(file, ShopState.class);
     }
 
-    public static void restore() throws IOException {
+    public static void restore(Shop shop) throws IOException {
         ShopState state = deserialize();
-
-        Shop shop = ShopProvider.getInstance().getShop();
 
         shop.importBooks(state.books());
         shop.importOrders(state.orders());

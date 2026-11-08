@@ -11,6 +11,8 @@ import java.util.Locale;
 public class Storage {
     private List<Book> books = new ArrayList<>();
 
+    public Storage(){}
+
     public Storage(List<Book> books){
         this.books.addAll(books);
     }
